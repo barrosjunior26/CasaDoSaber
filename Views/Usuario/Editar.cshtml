@@ -1,0 +1,65 @@
+﻿@model CasaDoSaber.Models.UsuarioModel
+
+@{
+    ViewData["title"] = "Editar cadastro";
+}
+
+<div class="form-control mt-5">
+
+    @using(Html.BeginForm("Editar","Usuario",FormMethod.Post, new {@enctype = "multipart/form-data", @style = "background-color: #F0F0F0"}))
+    {
+        @Html.HiddenFor(Model => Model.Id)
+
+        <h1 class="display-4 mt-5 mb-5">@ViewData["title"]</h1>
+
+        if(TempData["EdicaoError"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["EdicaoError"] <i class="bi bi-database-fill-x"></i>
+            </div>
+        }
+
+        <div class="row g-3">
+            <div class="col-12 mb-3">
+                <img src="@Url.Action("ObterImagem","Usuario", new{id = Model.Id})" style="width: 200px; height: 200px;" class="rounded" />
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-3">
+                @Html.LabelFor(Model => Model.Nome, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.Nome, new { @class = "form-control text-uppercase" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(Model => Model.CPF, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.CPF, new { @class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(Model => Model.RG, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.RG, new { @class = "form-control"})
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(Model => Model.Funcao, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.Funcao, new { @class = "form-control text-uppercase" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(Model => Model.Email, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control text-uppercase" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(Model => Model.Senha, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.Senha, new { @class = "form-control", @type = "password" })
+            </div>
+            <div class="col-md-2">
+                <label for="alterImagem" class="form-label">Alterar imagem</label>
+                <input type="file" name="novaImagem" id="alterImagem" class="form-control" />
+            </div>
+        </div>
+        <div class="row g-3 mt-3">
+            <div class="col-12">
+                <button type="submit" class="btn btn-success">Salvar <i class="bi bi-floppy"></i></button>
+                <a asp-controller="Usuario" asp-action="Detalhes" asp-route-id="@Model.Id" class="btn btn-info">Voltar <i class="bi bi-arrow-return-left"></i></a>
+                <a asp-controller="Usuario" asp-action="ListaUsuario" class="btn btn-info">Lista de usuários <i class="bi bi-person-lines-fill"></i></a>
+            </div>
+        </div>
+    }
+</div>

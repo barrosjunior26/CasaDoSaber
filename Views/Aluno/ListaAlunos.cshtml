@@ -1,0 +1,82 @@
+﻿@model IEnumerable<AlunoModel>
+
+@{
+    ViewData["title"] = "Lista de alunos cadastrados";
+}
+
+<div class="form-control mt-5 mb-5">
+    <div class="titulo mt-5 mb-5">
+        <h1 class="display-4">@ViewData["title"]</h1>
+    </div>
+
+    @{
+        if(TempData["SucessoSalvar"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SucessoSalvar"] <i class="bi bi-database-check"></i>
+            </div>
+        }
+    }
+
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h4>Pesquisa de aluno</h4>
+            <a asp-controller="Aluno" asp-action="Cadastro" class="btn btn-success">Novo cadastro <i class="bi bi-person-add"></i></a>
+        </div>
+        <div class="card-body">
+            @using(Html.BeginForm("ListaAlunos","Aluno", FormMethod.Get))
+            {
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-4">
+                        <select name="tipoPesquisa" class="form-control">
+                            <option selected disabled value="">Selecione</option>
+                            <option value="nome">Nome</option>
+                            <option value="cpf">CPF</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="search" name="query" class="form-control" placeholder="Pesquisar aluno" />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-success">Pesquisar <i class="bi bi-search"></i></button>
+                        <a asp-controller="Portal" asp-action="Index" class="btn btn-info">Voltar <i class="bi bi-arrow-return-left"></i></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Nome</th>
+                <th scope="col">Série</th>
+                <th scope="col">Turno</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if(Model != null)
+                {
+                    if(Model.Any())
+                    {
+                        foreach(var aluno in Model)
+                        {
+                            <tr>
+                                <td><img src="@Url.Action("BuscarImagem","Aluno", new{id = aluno.Matricula})" style="width: 100px; height: 100px;"/></td>
+                                <td class="text-uppercase">@aluno.Nome</td>
+                                <td class ="text-uppercase">@aluno.Serie</td>
+                                <td class="text-uppercase">@aluno.Turno</td>
+                                <td>
+                                    <a asp-controller="Aluno" asp-action="Detalhes" asp-route-id="@aluno.Matricula" class="btn btn-primary">Detalhes <i class="bi bi-ticket-detailed"></i></a>
+                                    <a asp-controller="Aluno" asp-action="Excluir" asp-route-id="@aluno.Matricula" class="btn btn-danger">Excluir <i class="bi bi-trash3"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

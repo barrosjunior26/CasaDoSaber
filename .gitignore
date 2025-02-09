@@ -1,0 +1,52 @@
+# Arquivos de log
+*.log
+*.tlog
+
+# Diretórios temporários
+bin/
+obj/
+temp/
+tmp/
+logs/
+.vscode/
+.vs/
+
+# Dados de usuário específicos e de build
+*.user
+*.suo
+
+
+# Arquivos de cache
+**/node_modules/
+
+# Arquivos de configuração gerados pelo Visual Studio
+.vscode/
+.vs/
+
+# Arquivos de cache do Test Explorer
+TestResults/
+
+# Arquivos de backup gerados por IDEs
+*.bak
+
+# Diretório de publicação
+publish/
+
+# Arquivos de saída
+*.pdb
+*.dll
+*.exe
+*.app
+*.dylib
+*.so
+*.pyc
+*.pyo
+*.env
+
+# Certificados de desenvolvimento local
+**/*.pfx
+**/*.key
+
+# Arquivos do Rider
+.idea/
+.idea_modules/

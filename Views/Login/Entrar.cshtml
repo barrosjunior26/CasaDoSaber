@@ -1,0 +1,33 @@
+﻿@model CasaDoSaber.Models.UsuarioModel
+
+@{
+    ViewData["title"] = "Acesso ao portal Spark for education";
+}
+
+@using(Html.BeginForm("Entrar","Login", FormMethod.Post, new {@class = "mt-5"}))
+{
+    <div class="row g-3 align-items-center">
+        <div class="col-sm-6">
+            <h1 class="display-4 text-center">@ViewData["title"]</h1>
+            <img src="/img/computer-login-animate.svg" class="img-fluid"/>
+        </div>
+        <div class="col-sm-6">
+
+            @if(TempData["ErrorLogin"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorLogin"]
+                </div>
+            }
+
+            <h5>E-mail</h5>
+            @Html.TextBoxFor(Model => Model.Email, new{@name = "email", @class = "form-control", @placeholder = "Digite seu e-mail"})
+            <h5>Senha</h5>
+            @Html.TextBoxFor(Model => Model.Senha, new {@name = "senha", @class = "form-control", @type = "password", @placeholder = "Digite sua senha"})
+            <div class="col-sm-12 mt-3">
+                <button type="submit" class="btn btn-outline-success">Entrar</button>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+}

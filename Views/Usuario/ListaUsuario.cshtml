@@ -1,0 +1,103 @@
+﻿@model IEnumerable<UsuarioModel>
+
+@{
+    ViewData["title"] = "Lista de colaboradores";
+}
+
+<div class="mt-5 form-control">
+
+    <div class="mt-5">
+        <h1 class="display-4">@ViewData["title"]</h1>
+    </div>
+
+    @{
+        if (TempData["CadastroSucesso"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["CadastroSucesso"] <i class="bi bi-database-check"></i>
+            </div>
+        }
+
+        if (TempData["EdicaoSucesso"] != null)
+        {
+            <div class="alert alert-info" role="alert">
+                @TempData["EdicaoSucesso"] <i class="bi bi-arrow-clockwise"></i>
+            </div>
+        }
+
+        if (TempData["ExcluirSucesso"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ExcluirSucesso"] <i class="bi bi-person-fill-x"></i>
+            </div>
+        }
+    }
+
+    <div class="card mt-5">
+        <div class="card-header d-flex justify-content-between">
+            <h4>Pesquisa de funcionário</h4>
+            <a asp-controller="Usuario" asp-action="Cadastro" class="btn btn-success">Novo cadastro <i class="bi bi-person-add"></i></a>
+        </div>
+        <div class="card-body">
+            @using(Html.BeginForm("ListaUsuario","Usuario", FormMethod.Get))
+            {
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <select name="tipoBusca" class="form-control">
+                            <option selected disabled value="">Selecione o tipo de busca</option>
+                            <option value="todos">Todos</option>
+                            <option value="nome">Pesquisar por nome</option>
+                            <option value="email">Pesquisar por e-mail</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="search" name="search" class="form-control" placeholder="Digite sua busca" />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-success">Pesquisar <i class="bi bi-search"></i></button>
+                        <a asp-controller="Portal" asp-action="Index" class="btn btn-info">Voltar <i class="bi bi-arrow-return-left"></i></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <table class="table table-hover mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Matrícula</th>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if(Model != null)
+                {
+                    if(Model.Any())
+                    {
+                        foreach(var usuario in Model)
+                        {
+                            <tr>
+                                <td style="font-weight: 800; color: red">
+                                    @usuario.Id
+                                </td>
+                                <td class="text-uppercase">
+                                    @usuario.Nome
+                                </td>
+                                <td class="text-uppercase">
+                                    @usuario.Email
+                                </td>
+                                <td>
+                                    <a asp-controller="Usuario" asp-action="Detalhes" asp-route-id="@usuario.Id" class="btn btn-info">Detalhes <i class="bi bi-ticket-detailed"></i></a>
+                                    <a asp-controller="Usuario" asp-action="Excluir" asp-route-id="@usuario.Id" class="btn btn-danger">Excluir <i class="bi bi-trash3"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

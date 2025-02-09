@@ -1,0 +1,109 @@
+﻿@model CasaDoSaber.Models.AlunoModel
+
+@{
+    ViewData["title"] = "Novo cadastro de aluno";
+}
+
+@using(Html.BeginForm("Cadastro","Aluno", FormMethod.Post, new {@enctype = "multipart/form-data", @class = "form-control mt-5", @style = "background-color: #F0F0F0"}))
+{
+    <div class="titulo mt-5 mb-5">
+        <h1 class="display-4">@ViewData["title"]</h1>
+    </div>
+
+    if(TempData["ErroCadastro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErroCadastro"] <i class="bi bi-database-fill-x"></i>
+        </div>
+    }
+
+    <div class="row g-3">
+        <div class="col-md-3">
+            @Html.LabelFor(Model => Model.Nome, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.Nome, new{@class = "form-control text-uppercase"})
+        </div>
+        <div class="col-md-1">
+            @Html.LabelFor(Model => Model.RG, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.RG, new { @class = "form-control", @Maxlength = "7" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.CPF, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.CPF, new { @class = "form-control", @Maxlength = "11" })
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(Model => Model.Serie, new{@class = "form-label"})
+            <select class="form-control" asp-for="Serie">
+                <option selected disabled value="">Selecione</option>
+                <option value="1° ano do ensino fundamental">1° ano do ensino fundamental</option>
+                <option value="2° ano do ensino fundamental">2° ano do ensino fundamental</option>
+                <option value="3° ano do ensino fundamental">3° ano do ensino fundamental</option>
+                <option value="4° ano do ensino fundamental">4° ano do ensino fundamental</option>
+                <option value="5° ano do ensino fundamental">5° ano do ensino fundamental</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(Model => Model.Turno, new { @class = "form-label" })
+            <select class="form-control" asp-for="Turno">
+                <option selected disabled value="">Selecione</option>
+                <option value="Matutino">Matutino</option>
+                <option value="Vespertino">Vespertino</option>
+            </select>
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.DtMatricula, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.DtMatricula, new {@type = "date", @class = "form-control text-uppercase" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(Model => Model.Contrato, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.Contrato, new{@value = Model.Contrato, @class = "form-control text-danger", @style = "font-weight: 800", @readonly = "readonly"})
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(Model => Model.imagemAluno, new { @class = "form-label" })
+            <input type="file" name="imagem" class="form-control" />
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-12">
+            <h5>Lançamento de notas</h5>
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Ciencias, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.Ciencias, new{@class = "form-control", @Maxlength = "3"})
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Geografia, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Geografia, new { @class = "form-control", @Maxlength = "3" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Estrangeira, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Estrangeira, new { @class = "form-control", @Maxlength = "3" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Matematica, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Matematica, new { @class = "form-control", @Maxlength = "3" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Portugues, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Portugues, new { @class = "form-control", @Maxlength = "3" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.MediaGeral, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.MediaGeral, new { @class = "form-control", @Maxlength = "3" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        @Html.LabelFor(Model => Model.Observacoes, new{@class = "form-label"})
+        @Html.TextAreaFor(Model => Model.Observacoes, new{rows = "4", @class = "form-control  text-uppercase"})
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Salvar <i class="bi bi-floppy"></i></button>
+            <button type="reset" class="btn btn-warning">Limpar <i class="bi bi-stars"></i></button>
+            <a asp-controller="Portal" asp-action="Index" class="btn btn-info">Voltar <i class="bi bi-arrow-return-left"></i></a>
+        </div>
+    </div>
+}

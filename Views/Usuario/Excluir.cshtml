@@ -1,0 +1,54 @@
+﻿@model CasaDoSaber.Models.UsuarioModel
+
+@{
+    ViewData["title"] = "Tem certeza que deseja excluir este cadastro?";
+}
+
+<div class="form-control mt-5">
+
+    @using (Html.BeginForm("Excluir", "Usuario", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(Model => Model.Id)
+
+        <h1 class="display-4 mt-5 mb-5">@ViewData["title"]</h1>
+
+        <div class="row g-3">
+            <div class="col-12 mb-3">
+                <img src="@Url.Action("ObterImagem","Usuario", new{id = Model.Id})" style="width: 200px; height: 200px;" class="rounded" />
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-1">
+                @Html.LabelFor(Model => Model.Id, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.Id, new { @class = "form-control text-danger", @readonly = "readonly"})
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(Model => Model.Nome, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.Nome, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(Model => Model.CPF, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.CPF, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(Model => Model.RG, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.RG, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(Model => Model.Funcao, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.Funcao, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(Model => Model.Email, new { @class = "form-label" })
+                @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="row g-3 mt-3">
+            <div class="col-12">
+                <button type="submit" class="btn btn-danger">Excluir <i class="bi bi-trash3"></i></button>
+                <a asp-controller="Usuario" asp-action="Detalhes" asp-route-id="@Model.Id" class="btn btn-info">Retornar para detalhes <i class="bi bi-arrow-return-left"></i></a>
+                <a asp-controller="Usuario" asp-action="ListaUsuario" class="btn btn-info">Lista de usuários <i class="bi bi-person-lines-fill"></i></a>
+            </div>
+        </div>
+    }
+</div>

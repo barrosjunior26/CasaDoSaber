@@ -1,0 +1,49 @@
+﻿@model CasaDoSaber.Models.UsuarioModel
+
+@{
+    ViewData["title"] = "Detalhamento de cadastro";
+}
+
+<div class="form-control mt-5">
+
+    <h1 class="display-4 mt-5 mb-5">@ViewData["title"]</h1>
+
+    <div class="row g-3">
+        <div class="col-12 mb-3">
+            <img src="@Url.Action("ObterImagem","Usuario", new{id = Model.Id})" style="width: 200px; height: 200px;" class="rounded"/>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Id, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.Id, new{@style = "font-weight: 800; color: red", @class = "form-control", @readonly = "readonly"})
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(Model => Model.Nome, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.Nome, new { @class = "form-control text-uppercase", @readonly = "readonly" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.CPF, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.CPF, new{@class = "form-control", @readonly = "readonly"})
+        </div>
+        <div class="col-md-1">
+            @Html.LabelFor(Model => Model.RG, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.RG, new{@class = "form-control", @readonly = "readonly"})
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Funcao, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Funcao, new { @class = "form-control text-uppercase", @readonly = "readonly" })
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(Model => Model.Email, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control text-uppercase", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-12">
+            <a asp-controller="Usuario" asp-action="Editar" asp-route-id="@Model.Id" class="btn btn-warning">Editar <i class="bi bi-pencil-square"></i></a>
+            <a asp-controller="Usuario" asp-action="ListaUsuario" class="btn btn-info">Voltar <i class="bi bi-arrow-return-left"></i></a>
+            <a asp-controller="Usuario" asp-action="Excluir" asp-route-id="@Model.Id" class="btn btn-danger">Excluir <i class="bi bi-trash3"></i></a>
+        </div>
+    </div>
+</div>
