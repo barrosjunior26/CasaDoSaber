@@ -7,7 +7,7 @@ namespace CasaDoSaber.Models
     {
         [Key, DisplayName("Matrícula")]
         public int Matricula { get; set; }
-        [DisplayName("Número do contrato")]
+        [DisplayName("Contrato")]
         public string Contrato { get; set; } = string.Empty;
         public string Nome { get; set; } = string.Empty;
         public string RG { get; set; } = string.Empty;
