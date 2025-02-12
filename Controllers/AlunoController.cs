@@ -151,6 +151,42 @@ namespace CasaDoSaber.Controllers
         }
 
         [HttpGet]
+        public IActionResult Excluir(int? id)
+        {
+            var excluir = _context.tb_alunos.Find(id);
+
+            if (excluir == null)
+            {
+                return NotFound();
+            }
+
+            AlunoModel alunoModel = _context.tb_alunos.FirstOrDefault(e => e.Matricula == id);
+
+            if (alunoModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(alunoModel);
+        }
+
+        [HttpPost]
+        public IActionResult Excluir(AlunoModel excluir)
+        {
+            var delAluno = _context.tb_alunos.Find(excluir.Matricula);
+
+            if (delAluno == null)
+            {
+                return NotFound();
+            }
+
+            _context.tb_alunos.Remove(delAluno);
+            _context.SaveChanges();
+            TempData["ExcluidoSucesso"] = "Cadastro excluído com sucesso!";
+            return RedirectToAction("ListaAlunos");
+        }
+
+        [HttpGet]
         public IActionResult BuscarImagem(int id)
         {
             var obterImagem = _context.tb_alunos.Find(id);

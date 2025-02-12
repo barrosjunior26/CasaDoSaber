@@ -41,7 +41,7 @@ namespace CasaDoSaber.Controllers
             claims.Add(new Claim(ClaimTypes.Name, usuarios.Email));
             claims.Add(new Claim(ClaimTypes.Sid, usuarios.Id.ToString()));
 
-            var identidadeUsuario = new ClaimsIdentity(claims, "CookieAuthentication");
+            var identidadeUsuario = new ClaimsIdentity(claims, "Acesso");
             ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identidadeUsuario);
             await HttpContext.SignInAsync("CookieAuthentication", claimsPrincipal, new AuthenticationProperties());
             return Redirect("/Portal/Index");

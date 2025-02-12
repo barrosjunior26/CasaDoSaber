@@ -16,6 +16,20 @@
                 @TempData["SucessoSalvar"] <i class="bi bi-database-check"></i>
             </div>
         }
+
+        if (TempData["SucessoAtualizar"] != null)
+        {
+            <div class="alert alert-info" role="alert">
+                @TempData["SucessoAtualizar"] <i class="bi bi-arrow-clockwise"></i>
+            </div>
+        }
+
+        if (TempData["ExcluidoSucesso"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ExcluidoSucesso"] <i class="bi bi-database-dash"></i>
+            </div>
+        }
     }
 
     <div class="card">

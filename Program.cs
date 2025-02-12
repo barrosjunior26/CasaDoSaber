@@ -14,7 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddAuthentication("CookieAuthentication").AddCookie("CookieAuthentication", options =>
 {
     options.LoginPath = "/Login/Entrar";
-    options.ExpireTimeSpan = TimeSpan.FromDays(10);
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(2);
 });
 
 var app = builder.Build();

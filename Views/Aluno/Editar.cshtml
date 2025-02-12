@@ -1,0 +1,126 @@
+﻿@model CasaDoSaber.Models.AlunoModel
+
+@{
+    ViewData["title"] = "Editar cadastro do aluno";
+}
+
+@using(Html.BeginForm("Editar","Aluno", FormMethod.Post, new {@enctype = "multipart/form-data", @class = "form-control mt-5 mb-5", @style = "background-color: #F0F0F0"}))
+{
+    <div class="titulo mt-5 mb-5">
+        <h1>@ViewData["title"]</h1>
+    </div>
+
+    if(TempData[""] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["EdicaoError"]
+        </div>
+    }
+
+    <div class="row g-3">
+        <div class="col-md-2">
+            <img src="@Url.Action("BuscarImagem","Aluno", new{id = Model.Matricula})" style="width: 150px; height: 150px;" class="rounded" />
+        </div>
+        <div class="col-md-1">
+            @Html.LabelFor(Model => Model.Matricula, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Matricula, new { @class = "form-control text-danger", @style = "font-weight: 800", @readonly = "readonly" })
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(Model => Model.Nome, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Nome, new { @class = "form-control text-uppercase" })
+        </div>
+        <div class="col-md-1">
+            @Html.LabelFor(Model => Model.RG, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.RG, new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.CPF, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.CPF, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(Model => Model.Serie, new { @class = "form-label" })
+            <select class="form-control" asp-for="Serie">
+                <option selected disabled value="">Selecione</option>
+                <option value="1° ano do ensino fundamental">1° ano do ensino fundamental</option>
+                <option value="2° ano do ensino fundamental">2° ano do ensino fundamental</option>
+                <option value="3° ano do ensino fundamental">3° ano do ensino fundamental</option>
+                <option value="4° ano do ensino fundamental">4° ano do ensino fundamental</option>
+                <option value="5° ano do ensino fundamental">5° ano do ensino fundamental</option>
+            </select>
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Turno, new { @class = "form-label" })
+            <select class="form-control" asp-for="Turno">
+                <option selected disabled value="">Selecione</option>
+                <option value="Matutino">Matutino</option>
+                <option value="Vespertino">Vespertino</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.DtMatricula, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.DtMatricula, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(Model => Model.Contrato, new { @class = "form-label", @readonly = "readonly" })
+            @Html.TextBoxFor(Model => Model.Contrato, new { @class = "form-control text-danger", @readonly = "readonly", @style = "font-weight: 800" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(Model => Model.Observacoes, new { @class = "form-label" })
+            @Html.TextAreaFor(Model => Model.Observacoes, new { rows = "3", @class = "form-control text-uppercase" })
+        </div>
+    </div>
+    <div class="row g-3  mb-5">
+        <div class="col-md-4">
+            @Html.LabelFor(Model => Model.imagemAluno, new{@class = "form-label"})
+            <input type="file" name="novaImagem" class="form-control" />
+        </div>
+    </div>
+
+    <h3>Notas registradas</h3>
+
+    <div class="row g-3 mt-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Ciencias, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Ciencias, new { @class = "form-control", @id = "ciencias" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Geografia, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Geografia, new { @class = "form-control", @id = "geografia" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Estrangeira, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Estrangeira, new { @class = "form-control", @id = "estrangeira" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Matematica, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Matematica, new { @class = "form-control", @id = "matematica" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.Portugues, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.Portugues, new { @class = "form-control", @id = "portugues" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-2">
+            @Html.LabelFor(Model => Model.MediaGeral, new { @class = "form-label" })
+            @Html.TextBoxFor(Model => Model.MediaGeral, new { @class = "form-control", @readonly = "readonly", @id = "media" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Salvar <i class="bi bi-floppy"></i></button>
+            <a asp-controller="Aluno" asp-action="Detalhes" asp-route-id="@Model.Matricula" class="btn btn-primary">Voltar <i class="bi bi-arrow-return-left"></i></a>
+            <a asp-controller="Aluno" asp-action="Excluir" asp-route-id="@Model.Matricula" class="btn btn-danger">Excluir <i class="bi bi-trash3"></i></a>
+        </div>
+    </div>
+} 

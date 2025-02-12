@@ -11,11 +11,11 @@ setTimeout(function () {
 $(document).ready(function () {
     function calcularMedia() {
         // Obtém os valores dos campos de entrada
-        var ciencias = parseFloat(document.getElementById("ciencias").value) || 0;
-        var geografia = parseFloat(document.getElementById("geografia").value) || 0;
-        var estrangeira = parseFloat(document.getElementById("estrangeira").value) || 0;
-        var matematica = parseFloat(document.getElementById("matematica").value) || 0;
-        var portugues = parseFloat(document.getElementById("portugues").value) || 0;
+        var ciencias = parseFloat(document.getElementById("ciencias").value.replace(",", ".")) || 0;
+        var geografia = parseFloat(document.getElementById("geografia").value.replace(",", ".")) || 0;
+        var estrangeira = parseFloat(document.getElementById("estrangeira").value.replace(",", ".")) || 0;
+        var matematica = parseFloat(document.getElementById("matematica").value.replace(",", ".")) || 0;
+        var portugues = parseFloat(document.getElementById("portugues").value.replace(",", ".")) || 0;
         var mediaColor = window.document.getElementById("media");
 
         // Calcula a média
