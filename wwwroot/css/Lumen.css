@@ -12394,3 +12394,8 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
 .menus a{
     text-decoration: none;
 }
+
+.inputError {
+    border: 2px solid red;
+    background-color: #FFDDDD;
+}

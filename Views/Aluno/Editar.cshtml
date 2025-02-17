@@ -31,11 +31,11 @@
         </div>
         <div class="col-md-1">
             @Html.LabelFor(Model => Model.RG, new { @class = "form-label" })
-            @Html.TextBoxFor(Model => Model.RG, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.RG, new { @class = "form-control", @Maxlength = "7" })
         </div>
         <div class="col-md-2">
             @Html.LabelFor(Model => Model.CPF, new { @class = "form-label" })
-            @Html.TextBoxFor(Model => Model.CPF, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.CPF, new { @class = "form-control", @Maxlength = "11" })
         </div>
         <div class="col-md-3">
             @Html.LabelFor(Model => Model.Serie, new { @class = "form-label" })

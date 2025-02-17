@@ -26,4 +26,8 @@
     <PackageReference Include="System.Formats.Asn1" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\sounds\" />
+  </ItemGroup>
+
 </Project>

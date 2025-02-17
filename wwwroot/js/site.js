@@ -8,6 +8,15 @@ setTimeout(function () {
     });
 }, 5000);
 
+//Função para gerar um alerta que sempre o valor digitado no campo de notas do aluno for menor que 0
+function AlertaSonoro() {
+    var som = new Audio('/sounds/Alert-3.mp3');
+    som.play()
+    setTimeout(function () {
+        alert("O valor não pode ser menor do que 0");
+    }, 300);
+}
+
 $(document).ready(function () {
     function calcularMedia() {
         // Obtém os valores dos campos de entrada
@@ -17,6 +26,7 @@ $(document).ready(function () {
         var matematica = parseFloat(document.getElementById("matematica").value.replace(",", ".")) || 0;
         var portugues = parseFloat(document.getElementById("portugues").value.replace(",", ".")) || 0;
         var mediaColor = window.document.getElementById("media");
+        var inputColor = window.document.querySelector('.inputNota');
 
         // Calcula a média
         var media = (ciencias + geografia + estrangeira + matematica + portugues) / 5;
@@ -25,6 +35,15 @@ $(document).ready(function () {
         document.getElementById("media").value = media.toFixed(2);
 
         mediaColor.value = media.toFixed(2);
+
+        if (ciencias < 0 || geografia < 0 || estrangeira < 0 || matematica < 0 || portugues < 0) {
+            AlertaSonoro();
+            // Adiciona a classe 'inputError' ao campo com valor inválido
+            $(this).addClass('inputError');
+            window.document.getElementById('media').value = "Recalculando...";
+        } else {
+            $(this).removeClass('inputError');
+        }
 
         if (media >= 7) {
             mediaColor.style.color = "green";
