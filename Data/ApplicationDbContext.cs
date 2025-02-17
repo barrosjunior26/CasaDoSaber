@@ -12,5 +12,6 @@ namespace CasaDoSaber
 
         public DbSet<UsuarioModel> tb_usuarios {  get; set; }
         public DbSet<AlunoModel> tb_alunos { get; set; }
+        public DbSet<CarreirasModel> tb_carreiras { get; set; }
     }
 }

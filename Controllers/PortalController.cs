@@ -10,5 +10,10 @@ namespace CasaDoSaber.Controllers
         {
             return View();
         }
+
+        public IActionResult Carreiras()
+        {
+            return View();
+        }
     }
 }
