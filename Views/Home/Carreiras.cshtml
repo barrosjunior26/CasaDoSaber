@@ -1,4 +1,4 @@
-﻿@model CasaDoSaber.Models.CarreirasModel
+﻿@model IEnumerable<CasaDoSaber.Models.CarreirasModel>
 
 @{
     ViewData["title"] = "Seja bem-vindo à Casa Do Saber";
@@ -17,7 +17,7 @@
     </div>
 
     <p>Somos apaixonados pelo que fazemos e acreditamos no poder positivo da educação. Na Casa do Saber, cada um de nós desempenha um papel fundamental no sucesso da nossa comunidade escolar. Todas as nossas conquistas são fruto da colaboração! Nosso sucesso é compartilhado, e acreditamos que, por meio da união, podemos encantar ainda mais nossos alunos com o conhecimento de hoje, enquanto preparamos os líderes de amanhã.</p>
-    
+
     <p><strong>Nossa Cultura</strong> é focada em construir um ambiente inclusivo e colaborativo, onde todos possam ser a melhor versão de si mesmos - e nos ajudar a ser a nossa melhor versão! Procuramos pessoas com paixão, curiosidade e coragem para fazer a diferença aqui.</p>
 
     <p>Acolhemos talentos diversos, porque acreditamos que grandes ideias vêm de pessoas com diferentes trajetórias. Oferecemos oportunidades para talentos que estão ingressando no mercado educacional e somos apaixonados por impulsionar nosso time.</p>
@@ -25,4 +25,61 @@
     <p><strong>É trabalhando e crescendo juntos que atingimos o nosso propósito: Transformar a Educação para um Futuro Melhor!</strong></p>
 
     <p><strong>Junte-se a nós</strong> para oferecer a melhor educação aos nossos alunos, precisamos de pessoas comprometidas em alcançar a excelência no ensino. Buscamos talentos empenhados em promover um ambiente de aprendizado enriquecedor e inspirador. Se você deseja fazer parte dessa transformação e gosta de trabalhar em equipe para um mundo melhor, aqui é o seu lugar! Temos oportunidades por todo o Brasil!</p>
+
+    <div class="card mt-5">
+        <div class="card-header">
+            <h4>Nossas vagas</h4>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Carreiras", "Home", FormMethod.Get))
+            {
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <select class="form-control" name="tipoVaga">
+                            <option selected disabled>Selecione o método de pesquisa</option>
+                            <option value="ModoTrabalho">Modo de trabalho</option>
+                            <option value="TipoVaga">Tipo de vaga</option>
+                            <option value="Estado">Estado</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="search" name="query" class="form-control" />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Pesquisar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Função</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Tipo de vaga</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if(Model != null)
+                {
+                    if (Model.Any())
+                    {
+                        foreach (var vaga in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@vaga.Codigo" style="text-decoration: none; font-weight: 700">@vaga.Vaga</a>
+                                </td>
+                                <td>@vaga.Estado</td>
+                                <td>@vaga.TipoVaga</td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+        </tbody>
+    </table>
 </div>

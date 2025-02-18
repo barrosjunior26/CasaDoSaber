@@ -8,6 +8,7 @@ namespace CasaDoSaber.Models
     {
         [Key, DisplayName("Código da vaga")]
         public int Codigo { get; set; }
+        public string Vaga { get; set; } = string.Empty;
         [DisplayName("Modo de trabalho"), Required]
         public string ModoTrabalho { get; set; } = string.Empty;
         [DisplayName("Tipo de vaga"), Required]

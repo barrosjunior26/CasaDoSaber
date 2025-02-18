@@ -6,6 +6,12 @@ namespace CasaDoSaber.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        public HomeController(ApplicationDbContext db)
+        {
+            _context = db;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -16,9 +22,26 @@ namespace CasaDoSaber.Controllers
             return View();
         }
 
-        public IActionResult Carreiras()
+        public IActionResult Carreiras(string query, string tipoVaga)
         {
-            return View();
+            if (string.IsNullOrEmpty(query))
+            {
+                return View(_context.tb_carreiras.ToList());
+            }else if (tipoVaga == "ModoTrabalho")
+            {
+                return View(_context.tb_carreiras.Where(v => v.ModoTrabalho.Contains(query)));
+            }else if(tipoVaga == "TipoVaga")
+            {
+                return View(_context.tb_carreiras.Where(v => v.TipoVaga.Contains(query)));
+            }else if (tipoVaga == "Estado")
+            {
+                return View(_context.tb_carreiras.Where(v => v.Estado.Contains(query)));
+            }
+            else
+            {
+                IEnumerable<CarreirasModel> carreiras = _context.tb_carreiras.ToList();
+                return View(carreiras);
+            }
         }
     }
 }
