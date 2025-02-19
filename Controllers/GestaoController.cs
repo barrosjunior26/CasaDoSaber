@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CasaDoSaber.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CasaDoSaber.Controllers
@@ -16,6 +17,18 @@ namespace CasaDoSaber.Controllers
         public IActionResult Publiseer()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Publiseer(CarreirasModel carreira)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.tb_carreiras.Add(carreira);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Carreiras", "Home");
+            }
+            return View(carreira);
         }
     }
 }

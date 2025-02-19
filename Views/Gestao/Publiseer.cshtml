@@ -11,22 +11,22 @@
 @using(Html.BeginForm("Publiseer","Gestao", FormMethod.Post, new {@class = "form-control" }))
 {
     <div class="row g-3">
-        <div class="col-md-3">
+        <div class="col-md-4">
             @Html.LabelFor(Model => Model.Vaga, new{@class = "form-label"})
-            @Html.TextBoxFor(Model => Model.Vaga, new { @class = "form-control" })
+            @Html.TextBoxFor(Model => Model.Vaga, new { @class = "form-control text-uppercase" })
         </div>
         <div class="col-md-2">
-            @Html.LabelFor(Model => Model.ModoTrabalho)
-            <section class="form-control">
+            @Html.LabelFor(Model => Model.ModoTrabalho, new{@class = "form-label"})
+            <select class="form-control" asp-for="ModoTrabalho">
                 <option selected disabled value="">Selecione</option>
                 <option value="Presencial">Presencial</option>
                 <option value="Híbrido">Híbrido</option>
                 <option value="Home Office">Home Office</option>
-            </section>
+            </select>
         </div>
         <div class="col-md-2">
             @Html.LabelFor(Model => Model.TipoVaga, new{@class = "form-label"})
-            <select class="form-control">
+            <select class="form-control" asp-for="TipoVaga">
                 <option selected disabled value="">Selecione</option>
                 <option value="Aprendiz">Aprendiz</option>
                 <option value="Estágio">Estágio</option>
@@ -36,35 +36,67 @@
             </select>
         </div>
         <div class="col-md-1">
-            <select class="form-control">
-                <option value="">AC</option>
-                <option value="">AL</option>
-                <option value="">AP</option>
-                <option value="">AM</option>
-                <option value="">BA</option>
-                <option value="">CE</option>
-                <option value="">DF</option>
-                <option value="">ES</option>
-                <option value="">GO</option>
-                <option value="">MA</option>
-                <option value="">MT</option>
-                <option value="">MS</option>
-                <option value="">MG</option>
-                <option value="">PA</option>
-                <option value="">PB</option>
-                <option value="">PR</option>
-                <option value="">PE</option>
-                <option value="">PI</option>
-                <option value="">RJ</option>
-                <option value="">RN</option>
-                <option value="">RS</option>
-                <option value="">RO</option>
-                <option value="">RR</option>
-                <option value="">SC</option>
-                <option value="">SP</option>
-                <option value="">SE</option>
-                <option value="">TO</option>
+            @Html.LabelFor(Model => Model.Estado, new{@class = "form-label"})
+            <select class="form-control" asp-for="Estado">
+                <option value="Acre">AC</option>
+                <option value="Alagoas">AL</option>
+                <option value="Amapá">AP</option>
+                <option value="Amazonas">AM</option>
+                <option value="Bahia">BA</option>
+                <option value="Ceará">CE</option>
+                <option value="Distrito Federal">DF</option>
+                <option value="Espírito Santo">ES</option>
+                <option value="Goiás">GO</option>
+                <option value="Maranhão">MA</option>
+                <option value="Mato Grosso">MT</option>
+                <option value="Mato Grosso do Sul">MS</option>
+                <option value="Minas Gerais">MG</option>
+                <option value="Pará">PA</option>
+                <option value="Paraíba">PB</option>
+                <option value="Paraná">PR</option>
+                <option value="Pernambuco">PE</option>
+                <option value="Piauí">PI</option>
+                <option value="Rio de Janeiro">RJ</option>
+                <option value="Rio Grande do Norte">RN</option>
+                <option value="Rio Grande do Sul">RS</option>
+                <option value="Rondônia">RO</option>
+                <option value="Roraima">RR</option>
+                <option value="Santa Catarina">SC</option>
+                <option value="São Paulo">SP</option>
+                <option value="Sergipe">SE</option>
+                <option value="Tocantins">TO</option>
             </select>
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(Model => Model.EncerramentoVaga, new{@class = "form-label"})
+            @Html.TextBoxFor(Model => Model.EncerramentoVaga, new{@type = "date", @class = "form-control"})
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-4">
+            @Html.LabelFor(Model => Model.Descricao, new { @class = "form-label" })
+            @Html.TextAreaFor(Model => Model.Descricao, new {rows = "3", @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(Model => Model.Responsabilidades, new { @class = "form-label" })
+            @Html.TextAreaFor(Model => Model.Responsabilidades, new { rows = "3", @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(Model => Model.RequisitosQualificacoes, new { @class = "form-label" })
+            @Html.TextAreaFor(Model => Model.RequisitosQualificacoes, new { rows = "3", @class = "form-control" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-md-12">
+            @Html.LabelFor(Model => Model.Adicionais, new { @class = "form-label" })
+            @Html.TextAreaFor(Model => Model.Adicionais, new { rows = "3", @class = "form-control" })
+        </div>
+    </div>
+    <div class="row g-3 mt-3">
+        <div class="col-12">
+           <button type="submit" class="btn btn-success">Publicar <i class="bi bi-megaphone"></i></button>
+           <button type="reset" class="btn btn-warning">Limpar <i class="bi bi-stars"></i></button>
+           <a asp-controller="Portal" asp-action="Index" class="btn btn-primary">Menu <i class="bi bi-menu-button"></i></a>
         </div>
     </div>
 }
