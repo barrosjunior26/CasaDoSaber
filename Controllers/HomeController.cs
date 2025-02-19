@@ -43,5 +43,23 @@ namespace CasaDoSaber.Controllers
                 return View(carreiras);
             }
         }
+
+        [HttpGet]
+        public IActionResult Detalhes(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            CarreirasModel detalhes = _context.tb_carreiras.FirstOrDefault(d => d.Codigo == id);
+
+            if (detalhes == null)
+            {
+                return NotFound();
+            }
+
+            return View(detalhes);
+        }
     }
 }
