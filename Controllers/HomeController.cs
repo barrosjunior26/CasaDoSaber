@@ -56,7 +56,7 @@ namespace CasaDoSaber.Controllers
 
             if (detalhes == null)
             {
-                return NotFound();
+               return NotFound();
             }
 
             return View(detalhes);

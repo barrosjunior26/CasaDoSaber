@@ -1,11 +1,14 @@
-﻿@{
+﻿@model CasaDoSaber.Models.CarreirasModel
+
+
+@{
     ViewData["title"] = "Detalhes da vaga";
 }
 
 <div class="mt-5 mb-5">
 
     <div class="row align-items-center">
-        <div class="col-6 border text-center mt-5">
+        <div class="col-6 text-center mt-5">
             <div class="titulo">
                 <h1 class="display-4">@ViewData["title"]</h1>
             </div>
@@ -14,6 +17,21 @@
             </div>
         </div>
         <div class="col-6">
+            <h1 class="text-uppercase">@Model.Vaga</h1>
+            <br />
+            <p>Publicado em @Model.Publicacao</p>
+            <p>Inscrições abertas até @Model.EncerramentoVaga</p>
+            <hr />
+            <p><i class="bi bi-geo-alt-fill"></i> @Model.Estado</p>
+            <p><i class="bi bi-briefcase-fill"></i> @Model.TipoVaga</p>
+            <p><i class="bi bi-buildings"></i> @Model.ModoTrabalho</p>
+            <hr />
+            <div class="row g-3">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-dark">Candidatar-se</button>
+                    <a asp-controller="Home" asp-action="Carreiras" class="btn btn-info">Voltar</a>
+                </div>
+            </div>
         </div>
     </div>
 
